@@ -56,13 +56,12 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   TODO:
     * update the state by using Extended Kalman Filter equations
   */
-  std::cout << "------ ekf error ------\n";
   float px = x_(0);
   float py = x_(1);
   float vx = x_(2);
   float vy = x_(3);
   float ro = std::sqrt(px*px+py*py);
-  float theta = std::atan(py/px);
+  float theta = std::atan2(py,px);
   float ro_dot = (px*vx+py*vy)/ro;
   
   VectorXd z_pred = VectorXd(3);
@@ -75,9 +74,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   MatrixXd K = PHt * Si;
   
   //new estimate
-  std::cout << K << "\n";
   x_ = x_ + (K * y);
-  std::cout << "------ AFTER error ------\n";
   long x_size = x_.size();
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
   P_ = (I - K * H_) * P_;
