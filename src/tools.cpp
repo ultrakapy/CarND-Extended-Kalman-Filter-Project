@@ -56,7 +56,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 
   float posSquaredSum = px*px + py*py;
   float sqrtPos = sqrt(posSquaredSum);
-  float posPow32 = pow(posSquaredSum, 3/2);
+  float posPow32 = posSquaredSum*sqrtPos;
   
   //check division by zero
   if ((px == 0 && py == 0) || fabs(posSquaredSum) < 0.0001) {

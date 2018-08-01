@@ -108,7 +108,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       */
       float ro = measurement_pack.raw_measurements_[0];
       float theta = measurement_pack.raw_measurements_[1];
-      double normalized_theta = normalize_angle(theta);
+      float normalized_theta = normalize_angle(theta);
       float px = ro*std::cos(normalized_theta);
       float py = ro*std::sin(normalized_theta);
 
