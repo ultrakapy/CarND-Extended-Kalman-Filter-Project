@@ -60,7 +60,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
   
   //check division by zero
   if ((px == 0 && py == 0) || fabs(posSquaredSum) < 0.0001) {
-    throw invalid_argument("CalculateJacobian() - Division by Zero");
+    Hj << 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
   } else {
     //compute the Jacobian matrix
         
